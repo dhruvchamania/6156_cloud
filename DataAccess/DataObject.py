@@ -33,6 +33,19 @@ class UsersRDB(BaseDataObject):
     def get_by_email(cls, email):
 
         sql = "select * from baseball.users where email=%s"
+        #sql = "update baseball.users set email= "
+        res, data = data_adaptor.run_q(sql=sql, args=(email), fetch=True)
+        if data is not None and len(data) > 0:
+            result =  data[0]
+        else:
+            result = None
+
+        return result
+
+    @classmethod
+    def delete_by_email(cls, email):
+
+        sql = "delete from baseball.users where email=%s"
         res, data = data_adaptor.run_q(sql=sql, args=(email), fetch=True)
         if data is not None and len(data) > 0:
             result =  data[0]

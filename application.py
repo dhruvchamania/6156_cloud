@@ -11,6 +11,7 @@ import json
 
 from CustomerInfo.Users import UsersService as UserService
 from Context.Context import Context
+from Middleware import notification
 
 # Setup and use the simple, common Python logging framework. Send log messages to the console.
 # The application should get the log level out of the context. We will change later.
@@ -188,6 +189,21 @@ def user_email(email):
                 rsp_data = None
                 rsp_status = 404
                 rsp_txt = "NOT FOUND"
+
+        elif inputs["method"] == "DELETE":
+
+            rsp = user_service.delete_by_email(email)
+
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 200
+                rsp_txt = "OK"
+            else:
+                rsp_data = "Succesfully deleted"
+                rsp_status = 404
+                rsp_txt = "Data Sucessfully Deleted"
+
+
         else:
             rsp_data = None
             rsp_status = 501

@@ -209,5 +209,38 @@ def create_update(table_name, new_values, template):
 
     return sql, args
 
+def run_insert(table_name, column_list, values_list, cnx=None, commit=True):
+    """
+
+    :param table_name: Name of the table to insert data. Probably should just get from the object data.
+    :param column_list: List of columns for insert.
+    :param values_list: List of column values.
+    :param cnx: Ignore this for now.
+    :param commit: Ignore this for now.
+    :return:
+    """
+    try:
+        q = "insert into " + table_name + " "
+
+        # If the column list is not None, form the (col1, col2, ...) part of the statement.
+        if column_list is not None:
+            q += "(" + ",".join(column_list) + ") "
+
+        # We will use query parameters. For a term of the form values(%s, %s, ...) with one slot for
+        # each value to insert.
+        values = ["%s"] * len(values_list)
+
+        # Form the values(%s, %s, ...) part of the statement.
+        values = " ( " + ",".join(values) + ") "
+        values = "values" + values
+
+        # Put all together.
+        q += values
+
+        print(q)
+
+    except Exception as e:
+        print("Got exception = ", e)
+    raise e
 
 
