@@ -10,11 +10,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-55">
-              <caret line="201" column="47" selection-start-line="201" selection-start-column="47" selection-end-line="201" selection-end-column="47" />
+            <state relative-caret-position="176">
+              <caret line="171" column="18" lean-forward="true" selection-start-line="171" selection-start-column="18" selection-end-line="171" selection-end-column="18" />
               <folding>
                 <element signature="e#294#336#0" expanded="true" />
               </folding>
@@ -22,14 +22,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -46,15 +48,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Context/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CustomerInfo/Users.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-731">
-              <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+            <state relative-caret-position="363">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -63,12 +60,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Middleware/notification.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="7" selection-start-column="7" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataAccess/DataObject.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+            <state relative-caret-position="397">
+              <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataAccess/DataAdaptor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-423">
+              <caret line="161" column="25" lean-forward="true" selection-start-line="161" selection-start-column="25" selection-end-line="161" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,6 +104,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>405</find>
+      <find>get_user</find>
+      <find>get</find>
+      <find>/api/user</find>
+      <find>demo</find>
+      <find>create_</find>
+      <find>delete_by</find>
+      <find>delete</find>
+      <find>create_user</find>
+      <find>creat</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Dhruv\Columbia Courses\Fall 2019\E6156\prof_github\2019265wRa-Archive</dir>
@@ -95,19 +122,20 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/DataAccess/DataAdaptor.py" />
-        <option value="$PROJECT_DIR$/DataAccess/DataObject.py" />
-        <option value="$PROJECT_DIR$/CustomerInfo/Users.py" />
         <option value="$PROJECT_DIR$/tp.py" />
         <option value="$PROJECT_DIR$/Middleware/notification.py" />
-        <option value="$PROJECT_DIR$/application.py" />
+        <option value="$PROJECT_DIR$/DataAccess/DataObject.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/CustomerInfo/Users.py" />
+        <option value="$PROJECT_DIR$/application.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="978" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -119,13 +147,23 @@
         <subPane>
           <expand>
             <path>
-              <item name="2019265wRa-Archive" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2019265wRa-Archive" type="462c0819:PsiDirectoryNode" />
+              <item name="6156_cloud-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6156_cloud-master" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="2019265wRa-Archive" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2019265wRa-Archive" type="462c0819:PsiDirectoryNode" />
-              <item name="Context" type="462c0819:PsiDirectoryNode" />
+              <item name="6156_cloud-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6156_cloud-master" type="462c0819:PsiDirectoryNode" />
+              <item name="CustomerInfo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6156_cloud-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6156_cloud-master" type="462c0819:PsiDirectoryNode" />
+              <item name="DataAccess" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6156_cloud-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6156_cloud-master" type="462c0819:PsiDirectoryNode" />
+              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -136,6 +174,12 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -151,12 +195,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.tp">
+  <component name="RunManager" selected="Flask server.Flask (application.py)">
     <configuration name="tp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="2019265wRa-Archive" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="db_connect_info" value="{&quot;password&quot;:&quot;dbuserdbuser&quot;,&quot;port&quot;:3306,&quot;host&quot;:&quot;e6156.csmcgds5qxyp.us-east-1.rds.amazonaws.com&quot;,&quot;user&quot;:&quot;admin&quot;}" />
       </envs>
       <option name="SDK_HOME" value="" />
@@ -189,14 +234,14 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Flask (application.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+    <configuration name="Flask (application.py)" type="Python.FlaskServer" nameIsGenerated="true">
       <module name="2019265wRa-Archive" />
       <option name="target" value="$PROJECT_DIR$/application.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
-        <env name="db_connect_info" value="{&quot;password&quot;:&quot;dbuserdbuser&quot;,&quot;port&quot;:3306,&quot;host&quot;:&quot;database-1.c6zluo9pjlrk.us-east-2.rds.amazonaws.com&quot;,&quot;user&quot;:&quot;admin&quot;}" />
+        <env name="db_connect_info" value="{&quot;password&quot;:&quot;dbuserdbuser&quot;,&quot;port&quot;:3306,&quot;host&quot;:&quot;e6156.csmcgds5qxyp.us-east-1.rds.amazonaws.com&quot;,&quot;user&quot;:&quot;admin&quot;}" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -215,7 +260,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.tp" />
-        <item itemvalue="Flask server.Flask (application.py)" />
       </list>
     </recent_temporary>
   </component>
@@ -232,22 +276,22 @@
       <workItem from="1570217971581" duration="5217000" />
       <workItem from="1570281073545" duration="3683000" />
       <workItem from="1572031843108" duration="6452000" />
+      <workItem from="1572297107175" duration="6821000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15352000" />
+    <option name="totallyTimeSpent" value="22173000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.52815014" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3281471" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -258,6 +302,8 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="right" id="R Packages" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -292,8 +338,10 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/2019265wRa_Archive$tp.coverage" NAME="tp Coverage Results" MODIFIED="1572038551519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/2019265wRa_Archive$Flask__application_py_.coverage" NAME="Flask (application.py) Coverage Results" MODIFIED="1572038321239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/6156_cloud_master$Flask__application_py_.coverage" NAME="Flask (application.py) Coverage Results" MODIFIED="1572305782051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/2019265wRa_Archive$tp.coverage" NAME="tp Coverage Results" MODIFIED="1572038551519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/6156_cloud_master$tp.coverage" NAME="tp Coverage Results" MODIFIED="1572303784484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/DataAccess/create_users.sql">
@@ -301,48 +349,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataAccess/DataAdaptor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="238" lean-forward="true" selection-start-line="238" selection-end-line="238" />
+        <state relative-caret-position="-423">
+          <caret line="161" column="25" lean-forward="true" selection-start-line="161" selection-start-column="25" selection-end-line="161" selection-end-column="25" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-55">
-          <caret line="201" column="47" selection-start-line="201" selection-start-column="47" selection-end-line="201" selection-end-column="47" />
-          <folding>
-            <element signature="e#294#336#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DataAccess/DataObject.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        <state relative-caret-position="397">
+          <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CustomerInfo/Users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-731">
-          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Context/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Middleware/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Middleware/notification.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="10" selection-start-column="10" selection-end-column="10" />
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -355,15 +389,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Context/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+        <state relative-caret-position="153">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CustomerInfo/Users.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="171" column="18" lean-forward="true" selection-start-line="171" selection-start-column="18" selection-end-line="171" selection-end-column="18" />
+          <folding>
+            <element signature="e#294#336#0" expanded="true" />
           </folding>
         </state>
       </provider>

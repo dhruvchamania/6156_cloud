@@ -5,13 +5,13 @@
 # - requests enables accessing the elements of an incoming HTTP/REST request.
 #
 from flask import Flask, Response, request
-
+from DataAccess.DataObject import UsersRDB as UsersRDB
 from datetime import datetime
 import json
-
+import uuid
 from CustomerInfo.Users import UsersService as UserService
 from Context.Context import Context
-from Middleware import notification
+#from Middleware import notification
 
 # Setup and use the simple, common Python logging framework. Send log messages to the console.
 # The application should get the log level out of the context. We will change later.
@@ -160,8 +160,46 @@ def demo(parameter):
     rsp = Response(json.dumps(msg), status=200, content_type="application/json")
     return rsp
 
+@application.route("/api/user/", methods = ["POST"])
+def user():
+   print("Hello")
+   global _user_service
+   resource_name = request.get_json()
+   resource_name['id'] = str(uuid.uuid4())
 
-@application.route("/api/user/<email>", methods=["GET", "PUT", "DELETE"])
+   inputs = log_and_extract_input(demo, resource_name)
+   #rsp_data = None
+   rsp_data = None
+
+   try:
+       user_service = _get_user_service()
+
+       if request.method == "POST":
+
+
+        rsp = user_service.create_user(resource_name)
+
+        if rsp is not None:
+            rsp_data = rsp
+            rsp_status = 200
+            rsp_txt = "User Created"
+        else:
+            rsp_data = None
+            rsp_status = 404
+            rsp_txt = "NOT FOUND"
+
+   except Exception as e:
+       log_msg = "/email: Exception = " + str(e)
+       logger.error(log_msg)
+       rsp_status = 500
+       rsp_txt = "INTERNAL SERVER ERROR. Please take COMSE6156 -- Cloud Native Applications."
+       full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+   #print(rsp)
+   #return rsp
+   return rsp_data
+
+@application.route("/api/user/<email>", methods=["GET","DELETE","PUT"])
 def user_email(email):
 
     global _user_service

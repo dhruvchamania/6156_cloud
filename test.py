@@ -32,7 +32,7 @@ def t2():
         "last_name":"Baggins",
         "first_name":"Frodo",
         "id":str(uuid.uuid4()),
-        "email":"dhruv.chamania@gmail.com",
+        "email":"dhruv.chamania432@gmail.com",
         "status":"Pending",
         "password":"ok"
     }
@@ -45,5 +45,5 @@ def t3():
     print("Result = \n", json.dumps(r, indent=2))
 
 #t1()
-#t2()
+t2()
 #t3()
