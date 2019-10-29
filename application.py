@@ -160,10 +160,12 @@ def demo(parameter):
     rsp = Response(json.dumps(msg), status=200, content_type="application/json")
     return rsp
 
-@application.route("/api/user/", methods = ["POST"])
+@application.route("/api/user/", methods = ["POST","DELETE"])
 def user():
-   print("Hello")
+
    global _user_service
+
+
    resource_name = request.get_json()
    resource_name['id'] = str(uuid.uuid4())
 
@@ -172,21 +174,36 @@ def user():
    rsp_data = None
 
    try:
+
        user_service = _get_user_service()
 
        if request.method == "POST":
 
+            rsp = user_service.create_user(resource_name)
 
-        rsp = user_service.create_user(resource_name)
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 200
+                rsp_txt = "User Created"
+            else:
+                rsp_data = None
+                rsp_status = 404
+                rsp_txt = "NOT FOUND"
 
-        if rsp is not None:
-            rsp_data = rsp
-            rsp_status = 200
-            rsp_txt = "User Created"
-        else:
-            rsp_data = None
-            rsp_status = 404
-            rsp_txt = "NOT FOUND"
+       elif request.method == "DELETE":
+           print("part 1 works")
+           account = user_service.get_by_email(resource_name["email"])
+           if account["status"] == "DELETED":
+               rsp_data = "User is already deleted"
+           else:
+               update = user_service.get_by_email(resource_name["email"])
+               rsp_data = user_service.delete_user(user_info = resource_name)
+               if rsp_data == None:
+                rsp_data = "User Deleted"
+       elif request.method == "GET":
+           rsp_data = user_service.get_by_email(resource_name["email"])
+
+
 
    except Exception as e:
        log_msg = "/email: Exception = " + str(e)

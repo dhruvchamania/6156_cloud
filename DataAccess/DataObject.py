@@ -77,17 +77,18 @@ class UsersRDB(BaseDataObject):
 
         return result
 
+    @classmethod
     def delete_user(cls, user_info):
 
         result = None
 
         try:
-            sql, args = data_adaptor.create_insert(table_name="users", row=user_info)
+            sql, args = data_adaptor.create_update(table_name="users", new_values = {"status":"DELETED"}, template = {"email": user_info["email"]})
             res, data = data_adaptor.run_q(sql, args)
-            if res != 1:
-                result = None
+            if data is not None and len(data) > 0:
+                result = data[0]
             else:
-                result = user_info['id']
+                result = None
         except pymysql.err.IntegrityError as ie:
             if ie.args[0] == 1062:
                 raise (DataException(DataException.duplicate_key))
