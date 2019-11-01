@@ -160,7 +160,7 @@ def demo(parameter):
     rsp = Response(json.dumps(msg), status=200, content_type="application/json")
     return rsp
 
-@application.route("/api/user/", methods = ["POST","DELETE"])
+@application.route("/api/user/", methods = ["POST"])
 def user():
 
    global _user_service
@@ -189,17 +189,6 @@ def user():
                 rsp_data = None
                 rsp_status = 404
                 rsp_txt = "NOT FOUND"
-
-       elif request.method == "DELETE":
-           print("part 1 works")
-           account = user_service.get_by_email(resource_name["email"])
-           if account["status"] == "DELETED":
-               rsp_data = "User is already deleted"
-           else:
-               update = user_service.get_by_email(resource_name["email"])
-               rsp_data = user_service.delete_user(user_info = resource_name)
-               if rsp_data == None:
-                rsp_data = "User Deleted"
        elif request.method == "GET":
            rsp_data = user_service.get_by_email(resource_name["email"])
 
@@ -216,7 +205,7 @@ def user():
    #return rsp
    return rsp_data
 
-@application.route("/api/user/<email>", methods=["GET","DELETE","PUT"])
+@application.route("/api/user/<email>", methods=["PUT", "DELETE", "GET"])
 def user_email(email):
 
     global _user_service
@@ -234,7 +223,11 @@ def user_email(email):
 
         if inputs["method"] == "GET":
 
-            rsp = user_service.get_by_email(email)
+            account = user_service.get_by_email(email)
+            if account["status"] == "DELETED":
+                rsp = "User is already deleted"
+            else:
+                rsp = user_service.get_by_email(email)
 
             if rsp is not None:
                 rsp_data = rsp
@@ -245,21 +238,24 @@ def user_email(email):
                 rsp_status = 404
                 rsp_txt = "NOT FOUND"
 
-        elif inputs["method"] == "DELETE":
+        elif request.method == "DELETE":
 
-            rsp = user_service.delete_by_email(email)
+            account = user_service.get_by_email(email)
+            if account["status"] == "DELETED":
+                rsp = "User is already deleted"
+            else:
+                rsp = user_service.delete_user(user_info=account)
 
             if rsp is not None:
                 rsp_data = rsp
-                rsp_status = 200
+                rsp_status = 404
                 rsp_txt = "OK"
             else:
                 rsp_data = "Succesfully deleted"
-                rsp_status = 404
+                rsp_status = 200
                 rsp_txt = "Data Sucessfully Deleted"
 
-
-        else:
+        elif inputs["method"] == "PUT":
             rsp_data = None
             rsp_status = 501
             rsp_txt = "NOT IMPLEMENTED"
