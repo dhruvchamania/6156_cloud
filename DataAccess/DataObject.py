@@ -1,6 +1,7 @@
 import DataAccess.DataAdaptor as data_adaptor
 from abc import ABC, abstractmethod
 import pymysql.err
+from Middleware import notification
 
 class DataException(Exception):
 
@@ -63,6 +64,10 @@ class UsersRDB(BaseDataObject):
         try:
             sql, args = data_adaptor.create_insert(table_name="users", row=user_info)
             res, data = data_adaptor.run_q(sql, args)
+
+            msg = {"customers_email": user_info['email']}
+            notification.publish_it(msg)
+
             if res != 1:
                 result = None
             else:
@@ -76,6 +81,10 @@ class UsersRDB(BaseDataObject):
             raise DataException()
 
         return result
+
+    @classmethod
+    def update_user(cls, email, data):
+        pass
 
     @classmethod
     def delete_user(cls, user_info):
