@@ -227,7 +227,7 @@ def user_email(email):
             if account["status"] == "DELETED":
                 rsp = "User is already deleted"
             else:
-                rsp = user_service.get_by_email(email)
+                rsp = account
 
             if rsp is not None:
                 rsp_data = rsp
@@ -257,8 +257,12 @@ def user_email(email):
 
         elif inputs["method"] == "PUT":
             rsp_data = None
-            rsp_status = 501
-            rsp_txt = "NOT IMPLEMENTED"
+            # rsp_status = 501
+            # rsp_txt = "NOT IMPLEMENTED"
+
+            rsp = user_service.update_user(email, {'status': 'ACTIVE'})
+
+
 
         if rsp_data is not None:
             full_rsp = Response(json.dumps(rsp_data), status=rsp_status, content_type="application/json")
