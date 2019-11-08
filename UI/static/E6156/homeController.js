@@ -26,7 +26,8 @@ CustomerApp.controller("homeController", function($scope, $http, $location, $win
     console.log("Port = " + $location.port());
     console.log("Protocol = " + $location.protocol());
 
-    baseUrl = "http://127.0.0.1:5033/api";
+    baseUrl = "https://localhost:5000/api";
+    //    ec2-52-7-190-50.compute-1.amazonaws.com/api
 
     console.log("CustomerService version = " + CustomerService.get_version());
 
@@ -104,8 +105,8 @@ CustomerApp.controller("homeController", function($scope, $http, $location, $win
     };
 
 
-    var urlBase = "http://127.0.0.1:5000"
-
+    var urlBase = "ec2-52-7-190-50.compute-1.amazonaws.com"
+    // ec2-52-7-190-50.compute-1.amazonaws.com
 
 
 
