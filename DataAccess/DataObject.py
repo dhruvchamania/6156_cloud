@@ -84,7 +84,24 @@ class UsersRDB(BaseDataObject):
 
     @classmethod
     def update_user(cls, email, data):
-        pass
+        result = None
+
+        try:
+            sql, args = data_adaptor.create_update(table_name="baseball.users",new_values=data,template={"email":email})
+            res, data = data_adaptor.run_q(sql, args)
+            if data is not None and len(data) > 0:
+                result = data[0]
+            else:
+                result = None
+        except pymysql.err.IntegrityError as ie:
+            if ie.args[0] == 1062:
+                raise (DataException(DataException.duplicate_key))
+            else:
+                raise DataException()
+        except Exception as e:
+            raise DataException()
+
+        return result
 
     @classmethod
     def delete_user(cls, user_info):

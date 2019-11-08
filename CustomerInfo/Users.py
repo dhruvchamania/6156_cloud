@@ -42,8 +42,14 @@ class UsersService(BaseService):
         result = UsersRDB.get_by_email(email)
         return result
 
+    @classmethod
     def delete_user(cls, user_info):
         result = UsersRDB.delete_user(user_info = user_info)
+        return result
+
+    @classmethod
+    def update_user(cls, email, data):
+        result = UsersRDB.update_user(email=email, data=data)
         return result
 
     @classmethod

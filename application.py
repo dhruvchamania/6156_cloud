@@ -259,8 +259,20 @@ def user_email(email):
             rsp_data = None
             # rsp_status = 501
             # rsp_txt = "NOT IMPLEMENTED"
-
-            rsp = user_service.update_user(email, {'status': 'ACTIVE'})
+            resource_name = request.get_json()
+            account = user_service.get_by_email(email)
+            if account["status"] == "DELETED":
+                rsp = "User is already deleted"
+            else:
+                rsp = user_service.update_user(email, data=resource_name)
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 404
+                rsp_txt = "OK"
+            else:
+                rsp_data = "Succesfully updated"
+                rsp_status = 200
+                rsp_txt = "Data Sucessfully Updated"
 
 
 
