@@ -1,5 +1,5 @@
 import jwt
-from Projects.EB.Context.Context import Context
+from Context.Context import Context
 from time import time
 
 _context = Context.get_default_context()

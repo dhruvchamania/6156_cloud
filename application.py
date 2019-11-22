@@ -301,7 +301,7 @@ def user_email(email):
             if account["status"] == "DELETED":
                 rsp = "User is already deleted"
             else:
-                rsp = user_service.update_user(email, data=resource_name)
+                rsp = user_service.update_user(email, data={'status': 'ACTIVE'})
             if rsp is not None:
                 rsp_data = rsp
                 rsp_status = 404
