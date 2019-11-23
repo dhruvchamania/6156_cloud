@@ -15,6 +15,9 @@ from DataAccess.DataObject import UsersRDB as UsersRDB
 # The application should get the log level out of the context. We will change later.
 #
 import logging
+
+from Middleware import security
+
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -28,22 +31,24 @@ def t1():
 # Create User
 def t2():
 
+    pwd = security.hash_password({"password" : 'password'})
+
     usr = {
         "last_name":"Baggins",
         "first_name":"Frodo",
         "id":str(uuid.uuid4()),
-        "email":"dhruv.chamania432@gmail.com",
-        "status":"Pending",
-        "password":"ok"
+        "email":"dmc2236@columbia.edu",
+        "status":"PENDING",
+        "password": pwd
     }
     res = UsersRDB.create_user(user_info=usr)
 
 # Delete the above created user by email
 
 def t3():
-    r = UsersRDB.delete_by_email('dhruv.chamania@gmail.com')
+    r = UsersRDB.delete_by_email('dmc2236@columbia.edu')
     print("Result = \n", json.dumps(r, indent=2))
 
 #t1()
-t2()
-#t3()
+# t2()
+t3()

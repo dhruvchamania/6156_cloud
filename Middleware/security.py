@@ -22,7 +22,7 @@ def generate_token(info):
     else:
         info['role']='student'
 
-    info['created'] = str(info['created'])
+    # info['created'] = str(info['created'])
 
     h = jwt.encode(info, key=_context.get_context("JWT_SECRET"))
     h = str(h)

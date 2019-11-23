@@ -24,8 +24,9 @@ class Context():
 
         db_connect_info = os.environ['db_connect_info']
         db_connect_info = json.loads(db_connect_info)
+        JWT_SECRET = os.environ['JWT_SECRET']
 
-        ctx = { "db_connect_info": db_connect_info }
-
+        ctx = { "db_connect_info": db_connect_info,
+                "JWT_SECRET": JWT_SECRET}
         result = Context(ctx)
         return result

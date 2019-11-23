@@ -5,6 +5,7 @@
 # - requests enables accessing the elements of an incoming HTTP/REST request.
 #
 from flask import Flask, Response, request
+from flask_cors import CORS
 from DataAccess.DataObject import UsersRDB as UsersRDB
 from datetime import datetime
 import json
@@ -16,6 +17,8 @@ from functools import wraps
 #from Middleware import notification
 import Middleware.security as security_middleware
 import Middleware.notification as notification_middleware
+
+
 
 # Setup and use the simple, common Python logging framework. Send log messages to the console.
 # The application should get the log level out of the context. We will change later.
@@ -58,6 +61,8 @@ footer_text = '</body>\n</html>'
 from Middleware.middleware import SimpleMiddleWare as SimpleM
 
 application = Flask(__name__)
+
+CORS(application)
 
 # Middleware
 application.wsgi_app = SimpleM(application.wsgi_app)
@@ -332,7 +337,7 @@ def user_email(email):
 @application.route("/api/registration", methods=["POST"])
 def registration():
 
-    inputs = log_and_extract_input(demo, {"parameters": None})
+    inputs = log_and_extract_input(registration, {"parameters": None})
     rsp_data = None
     rsp_status = None
     rsp_txt = None
@@ -386,7 +391,7 @@ def registration():
 @application.route("/api/login", methods=["POST"])
 def login():
 
-    inputs = log_and_extract_input(demo, {"parameters": None})
+    inputs = log_and_extract_input(login, {"parameters": None})
     rsp_data = None
     rsp_status = None
     rsp_txt = None
@@ -401,7 +406,7 @@ def login():
 
             rsp = r_svc.login(inputs['body'])
 
-            if rsp is not None:
+            if rsp is not False:
                 rsp_data = "OK"
                 rsp_status = 201
                 rsp_txt = "CREATED"
@@ -468,4 +473,4 @@ if __name__ == "__main__":
     init()
 
     application.debug = True
-    application.run()
+    # application.run()
