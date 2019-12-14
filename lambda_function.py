@@ -122,11 +122,13 @@ def lambda_handler(event, context):
                 email = jwt.decode(token, 'secret')['em']
                 r = requests.put(
                     "http://baseball.9x2apnhkjg.us-east-1.elasticbeanstalk.com/api/user/%s" % email,
-                    data=p)
+                    data=json.dumps({'status':'ACTIVE'}))
                 print('PUT email:', email)
+                print('PUT data:', r.request.body)
                 verification_msg = 'Verification was successful!'
             except Exception as e:
-                verification_msg = 'Verification failed!' % e
+                verification_msg = 'Verification failed!'
+                print('verification exception:', e)
         else:
             print("Doing a simple test.")
             em = event.get("customers_email", None)
@@ -135,9 +137,8 @@ def lambda_handler(event, context):
             else:
                 print("Nothing to do.")
 
-    # TODO implement
-    return {
-        "statusCode": 200,
-        "body": json.dumps(verification_msg)
-    }
-
+        # TODO implement
+        return {
+            "statusCode": 200,
+            "body": json.dumps(verification_msg)
+        }
