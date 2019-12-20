@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<form name="myForm" ng-submit="submitMyForm()">
+    <input ng-model="fields.name"  />
+    <script>
+        function myController($scope){
+    $scope.submitMyForm=function(){
+        /* while compiling form , angular created this object*/
+        var data=$scope.fields;
+        /* post to server*/
+        $http.post(url, data);
+    }
+
+};
+        </script>
+
+</html>
