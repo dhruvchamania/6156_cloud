@@ -79,7 +79,6 @@ class ProfileRDB(BaseDataObject):
 
         result = None
 
-        print("PROFILE: ", profile_info)
         try:
 
             for el in profile_info['entries']:

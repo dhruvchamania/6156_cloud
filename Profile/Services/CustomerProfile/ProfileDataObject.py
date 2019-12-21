@@ -79,7 +79,6 @@ class ProfileRDB(BaseDataObject):
 
         result = None
 
-        print("PROFILE: ", profile_info)
         try:
 
             for el in profile_info['entries']:
@@ -110,14 +109,11 @@ class ProfileRDB(BaseDataObject):
     def update_profile(cls, profileid, data):
         result = None
                  
-        print("DATA: ", data)
-
         try:
             sql, args = data_adaptor.create_update(table_name="baseball.profile",\
                                                     new_values=data, \
                                                     template={"profileid":profileid})
 
-            print("SQL: ", sql)
             res, data = data_adaptor.run_q(sql, args)
             if data is not None and len(data) > 0:
                 result = data[0]
@@ -136,7 +132,7 @@ class ProfileRDB(BaseDataObject):
     
     @classmethod
     def delete_profile(cls, profileid):
-        sql = "delete from baseball.profile where email=%s"
+        sql = "delete from baseball.profile where profileid=%s"
         res, data = data_adaptor.run_q(sql=sql, args=(profileid), fetch=True)
         if data is not None and len(data) > 0:
             result =  data[0]
