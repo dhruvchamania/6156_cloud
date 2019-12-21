@@ -30,12 +30,8 @@ class Context():
     
     @classmethod
     def get_default_context(cls):
-        
-        #aws-local.cvjgkx11alal.us-east-1.rds.amazonaws.com"
 
-        local_db = '{"password":"dbuserdbuser","port":3306,"host":"e6156.csmcgds5qxyp.us-east-1.rds.amazonaws.com","user":"admin"}'
-        #db_connect_info = os.environ.get('db_connect_info', None)
-        db_connect_info = local_db 
+        db_connect_info = os.environ.get('db_connect_info', None)
         if db_connect_info is not None:
             db_connect_info = json.loads(db_connect_info)
         else:
