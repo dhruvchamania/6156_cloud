@@ -297,9 +297,6 @@ def handle_profile_profileid(profileid):
 
     return full_rsp
 
-
-
-
 def do_something_before():
     print("\n")
     print("***************** Do something before got ... **************", request)
