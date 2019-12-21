@@ -71,6 +71,21 @@ application.wsgi_app = SimpleM(application.wsgi_app)
 @application.before_request
 def before_decorator():
     print(".... In before decorator ...")
+    # pull auth header from request
+    # check with security middleware that it's the expected user
+    if 'Authorization' in request.headers:
+        print('got request with auth header')
+        uri = request.path
+        method = request.method
+        auth_token = request.headers.get('Authorization')
+        if not security_middleware.authorize(uri, method, auth_token):
+            print("authentication failed")
+            rsp_data = None
+            rsp_status = 403
+            rsp_txt = "NOT AUTHORIZED"
+            full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+            return full_rsp
+
 
 
 @application.after_request
@@ -306,7 +321,7 @@ def user_email(email):
             if account["status"] == "DELETED":
                 rsp = "User is already deleted"
             else:
-                rsp = user_service.update_user(email, data={'status': 'ACTIVE'})
+                rsp = user_service.update_user(email, data=json.loads(request.get_data()))
             if rsp is not None:
                 rsp_data = rsp
                 rsp_status = 404
@@ -390,7 +405,6 @@ def registration():
 
 @application.route("/api/login", methods=["POST"])
 def login():
-
     inputs = log_and_extract_input(login, {"parameters": None})
     rsp_data = None
     rsp_status = None

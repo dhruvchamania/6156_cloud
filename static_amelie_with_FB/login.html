@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Login Page</title>
+
+  <!-- Custom fonts for this theme -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="css/freelancer.min.css" rel="stylesheet">
+
+  <!-- Style -->
+    <style media="screen">
+        #profile, #logout{display:none}
+    </style>
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Yankees Team Website</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="address_validation.html">Validate</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Login</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="address_appearing.html">Address</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+      <!-- Masthead Heading -->
+      <h1 class="masthead-heading text-uppercase mb-0">Login</h1>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- Login Things -->
+
+    <div class="container">
+            <h3 id="heading">Login to view your profile</h3>
+            <div id="profile"></div>
+        </div>
+
+    <form method="post">
+            <div id=login_2 class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+    <button type="submit">Login</button>
+        </div>
+
+    </form>
+
+      <!-- Facebook Login -->
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2407069732875477',
+      cookie     : true,
+      xfbml      : true,
+      version    : '3.0'
+    });
+
+    FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  function statusChangeCallback(response){
+      if (response.status === 'connected') {
+            setElements(true);
+            testAPI();
+            console.log('Connected Successfully');
+            var uid = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
+  }
+        else if (response.status === 'authorization_expired') {
+            console.log('Authorization Expired');
+            setElements(false);
+
+   }
+
+        else if (response.status === 'not_authorized') {
+            console.log('Not Authorized');
+            setElements(false);
+  }
+        else if (response.status === 'not_connected') {
+            console.log('Not connected');
+            setElements(false);
+  }
+  }
+
+  function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    });
+}
+
+    function setElements(isLoggedIn){
+      if(isLoggedIn){
+          document.getElementById('profile').style.display = 'block';
+          document.getElementById('logout').style.display = 'block';
+          document.getElementById('fb-btn').style.display = 'none';
+          document.getElementById('heading').style.display = 'none';
+          document.getElementById('login_2').style.display = 'none';
+      }
+      else {
+          document.getElementById('profile').style.display = 'none';
+          document.getElementById('logout').style.display = 'none';
+          document.getElementById('fb-btn').style.display = 'block';
+          document.getElementById('heading').style.display = 'block';
+          document.getElementById('login_2').style.display = 'block';
+
+      }
+
+    }
+
+    function logout(){
+      FB.logout(function(response){
+         setElements(false);
+
+        });
+    }
+
+    function testAPI(){
+      FB.api('/me?fields=name,email', function(response){
+          if(response && !response.error){
+              buildProfile(response);
+          }
+        })
+
+    }
+
+    function buildProfile(user){
+      let profile= `
+        <h3> Here is your profile information </h3>
+        <h5>Username: ${user.name}</h5>
+        <h5>Email: ${user.email}</h5>
+      `;
+
+      document.getElementById('profile').innerHTML = profile;
+    }
+
+
+
+</script>
+
+
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=2407069732875477&autoLogAppEvents=1"></script>
+
+
+        <button id="logout"><a href="#" ng-click="logout()">Logout</a></button>
+        <fb:login-button id="fb-btn"
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
+
+
+
+    </div>
+  </header>
+
+
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <div class="row">
+
+
+      </div>
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/freelancer.min.js"></script>
+
+</body>
+
+</html>
