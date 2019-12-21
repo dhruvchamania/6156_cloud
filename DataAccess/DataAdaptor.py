@@ -89,6 +89,7 @@ def run_q(sql, args=None, fetch=True, cur=None, conn=None, commit=True):
         logger.debug("Executing SQL = " + log_message)
 
         res = cur.execute(sql, args)
+        print("RESULT in run: ", res)
 
         if fetch:
             data = cur.fetchall()
