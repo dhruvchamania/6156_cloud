@@ -1,0 +1,63 @@
+from uuid import uuid4
+from Context.Context import Context
+from Services.CustomerProfile.ProfileDataObject import ProfileRDB as ProfileRDB
+from BaseServices.ServiceBase import BaseService as BaseService
+from BaseServices.ServiceBase import ServiceException as ServiceException
+
+
+class ProfileService(BaseService):
+
+    required_create_fields = ['userid', 'element_type', 'element_subtype', 'element_value']
+    valid_element_types = ['email', 'phone', 'address', 'other']
+    valid_sub_element_type = ['home', 'phone', 'work', None]
+
+
+    def __init__(self, ctx=None):
+
+        super().__init__()
+
+        if ctx is None:
+            ctx = Context.get_default_context()
+
+        self._ctx = ctx
+
+    @classmethod
+    def get_by_userid(cls, userid):
+        result = ProfileRDB.get_by_userid(userid)
+        return result
+
+    @classmethod
+    def get_by_profileid(cls, profileid):
+        result = ProfileRDB.get_by_profileid(profileid)
+        return result
+
+    @classmethod
+    def update_by_profileid(cls, profileid, data):
+        result = ProfileRDB.update_profile(profileid, data)
+        return result
+
+    @classmethod
+    def validate_profile_element(cls, profile_element_info):
+
+        et = profile_element_info['element_type']
+        st = profile_element_info.get('element_sub_type', None)
+        if (et in cls.valid_element_types) and (st in cls.valid_sub_element_type):
+            if st == 'None' and et != 'other':
+                raise ServiceException("Invalid input.")
+
+    @classmethod
+    def create_profile(cls, profile_info):
+
+        new_values = []
+        userid = profile_info['userid']
+
+        result = ProfileRDB.create_profile(profile_info=profile_info)
+
+        return result
+
+    @classmethod
+    def delete_by_profileid(cls, profileid):
+        result = ProfileRDB.delete_profile(profileid)
+        return result 
+
+

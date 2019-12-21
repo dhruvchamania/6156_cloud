@@ -4,20 +4,27 @@
 <div class="container" ng-app="CustomerApp" ng-controller="profileController">
 
 
-    <!-- Call to Action Well -->
+    <!-- Address -->
     <div class="card text-white bg-secondary my-4">
         <div class="card-body">
-            <h2>Enter and Address</h2>
+            <h2>Enter your information</h2>
             <form>
                 <br>
                     <input type="text" id="newaddress" name="newaddress" placeholder="{{placeholder}}"  style="width:500px">
                 <br>
+                <br>
+                    <input type="text" id="newemail" name="newemail" placeholder="{{placeholder}}"  style="width:500px">
+                <br>
+                <br>
+                    <input type="text" id="newphone" name="newphone" placeholder="{{placeholder}}"  style="width:500px">
+                <br>
+
             </form>
             <p></p>
             <div class="dropdown">
                 <button class="btn  btn-primary dropdown-toggle"
                         type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;" >
-                    Choose the type of address
+                    Choose the type of personal information
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a ng-click="addressKind($index)" ng-repeat="k in addressKinds" class="dropdown-item">{{k}}</a>
