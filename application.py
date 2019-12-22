@@ -18,7 +18,7 @@ from functools import wraps
 import Middleware.security as security_middleware
 import Middleware.notification as notification_middleware
 
-
+from botocore.vendored import requests
 
 # Setup and use the simple, common Python logging framework. Send log messages to the console.
 # The application should get the log level out of the context. We will change later.
@@ -59,6 +59,9 @@ footer_text = '</body>\n</html>'
 # EB looks for an 'application' callable by default.
 # This is the top-level application that receives and routes requests.
 from Middleware.middleware import SimpleMiddleWare as SimpleM
+from Context.Context import Context
+from Services.CustomerProfile.Profile import ProfileService as ProfileService
+_profile_service = None
 
 application = Flask(__name__)
 
@@ -118,6 +121,13 @@ def _get_default_context():
 
     return _default_context
 
+def _get_profile_service():
+    global _profile_service
+
+    if _profile_service is None:
+        _profile_service = ProfileService()
+
+    return _profile_service
 
 def _get_user_service():
     global _user_service
@@ -137,13 +147,15 @@ def _get_registration_service():
 
 def init():
 
-    global _default_context, _user_service
+    global _default_context, _user_service, _profile_service
 
     _default_context = Context.get_default_context()
     _user_service = UserService(_default_context)
     _registration_service = RegisterLoginSvc()
+    _profile_service = ProfileService(_default_context)
 
     logger.debug("_user_service = " + str(_user_service))
+    logger.debug("_profile_service = " + str(_profile_service))
 
 
 # 1. Extract the input information from the requests object.
@@ -216,6 +228,156 @@ def demo(parameter):
 
     rsp = Response(json.dumps(msg), status=200, content_type="application/json")
     return rsp
+
+
+@application.route("/api/profile", methods=["POST", "GET"])
+def handle_profiles():
+    inputs = log_and_extract_input(demo, {"parameters": None})
+    rsp_data = None
+    rsp_status = None
+    rsp_txt = None
+
+    try:
+
+        r_svc = _get_profile_service()
+
+        logger.error("/profile_service = " + str(r_svc))
+
+        if inputs["method"] == "POST":
+            rsp = r_svc.create_profile(inputs['body'])
+
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 201
+                rsp_txt = "CREATED"
+                link = "?userid=" + rsp_data['userid']
+            else:
+                rsp_data = None
+                rsp_status = 501
+                rsp_txt = "INTERNAL ERROR"
+
+        elif inputs["method"] == "GET":
+            query = inputs['query_params']
+            rsp = r_svc.get_by_userid(query['customerid'])
+
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 201
+                rsp_txt = "FOUND"
+                link = "?userid=" + rsp_data['userid']
+            else:
+                rsp_data = None
+                rsp_status = 502
+                rsp_txt = "NOT FOUND"
+
+        else:
+            rsp_data = None
+            rsp_status = 501
+            rsp_txt = "NOT IMPLEMENTED"
+
+        if rsp_data is not None:
+            # TODO Generalize generating links
+            headers = {"Location": "/api/users" + link}
+            # headers["Authorization"] =  auth
+            rsp_data['links'] = {"rel": "user", "href": headers['Location']}
+
+            full_rsp = Response(json.dumps(rsp_data), headers=headers, \
+                                status=rsp_status, content_type="text/plain")
+        else:
+            full_rsp = Response(rsp_data, status=rsp_status, content_type="text/plain")
+
+    except Exception as e:
+        log_msg = "/api/profile: Exception = " + str(e)
+        logger.error(log_msg)
+        rsp_status = 500
+        rsp_txt = "INTERNAL SERVER ERROR. Please take COMSE6156 -- Cloud Native Applications."
+        full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+    log_response("/api/registration", rsp_status, rsp_data, rsp_txt)
+
+    return full_rsp
+
+
+@application.route("/api/profile/<profileid>", methods=["GET", "PUT", "DELETE"])
+def handle_profile_profileid(profileid):
+    global _profile_service
+
+    inputs = log_and_extract_input(demo, {"parameters": profileid})
+
+    rsp_data = None
+    rsp_status = None
+    rsp_txt = None
+
+    try:
+        profile_service = _get_profile_service()
+
+        logger.info("/profileid: _profile_service = " + str(_profile_service))
+
+        if inputs["method"] == "GET":
+            rsp = profile_service.get_by_profileid(profileid)
+
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 200
+                rsp_txt = "OK"
+            else:
+                rsp_data = None
+                rsp_status = 404
+                rsp_txt = "NOT FOUND"
+
+        elif inputs["method"] == "PUT":
+            body = inputs['body']
+            rsp = profile_service.update_by_profileid(profileid, body)
+
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 200
+                rsp_txt = "OK"
+            else:
+                rsp_data = None
+                rsp_status = 404
+                rsp_txt = "NOT FOUND"
+
+        elif inputs["method"] == "DELETE":
+            rsp = profile_service.delete_by_profileid(profileid)
+
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 200
+                rsp_txt = "OK"
+            else:
+                rsp_data = None
+                rsp_status = 404
+                rsp_txt = "NOT FOUND"
+
+        else:
+            rsp_data = None
+            rsp_status = 501
+            rsp_txt = "NOT IMPLEMENTED"
+
+        if rsp_data is not None:
+            headers = {"Location": "/api/users" + link}
+            # headers["Authorization"] =  auth
+            rsp_data['links'] = {"rel": "user", "href": headers['Location']}
+
+            full_rsp = Response(json.dumps(rsp_data, default=str),
+                                status=rsp_status,
+                                headers=headers,
+                                content_type="application/json")
+        else:
+            full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+    except Exception as e:
+        log_msg = "/userid: Exception = " + str(e)
+        logger.error(log_msg)
+        rsp_status = 500
+        rsp_txt = "INTERNAL SERVER ERROR. Please take COMSE6156 -- Cloud Native Applications."
+        full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+    log_response("/userid", rsp_status, rsp_data, rsp_txt)
+
+    return full_rsp
+
 
 @application.route("/api/user/", methods = ["POST"])
 def user():
@@ -474,8 +636,112 @@ def test_middleware(parameter):
     # More stuff goes here.
 
     return "something"
+"""
+@application.route("/api/addresses", methods=["POST","PUT"])
+def create_address():
+    address_body = request.get_json()
+    global _address_service
 
+    # in_args, fields, body, limit, offset = parse_and_print_args()
+    # address_info = body
+    print("POST body =", address_body)
+    inputs = log_and_extract_input(demo, {"parameters": address_body['address_info']})
+    full_rsp = None
+    rsp_data = None
+    rsp_status = None
+    rsp_txt = None
+    base_url = request.url_root
+    try:
+        address_service = _get_address_service()
+        logger.error("/address: _address_service = " + str(address_service))
+        rsp = None
 
+        if inputs["method"] == "POST":
+            lambda_response = address_service.invoke_addressService(address_body['address_info'])
+
+            if lambda_response is not None:
+
+                if 'body' in lambda_response.keys():
+
+                    url = base_url + 'api/profile'
+                    profile_data = {
+                        'address_id': lambda_response['body'],
+                        'type': "Address",
+                        'subtype': address_body['subtype'],
+                        'val': '/api/addresses/' + lambda_response['body'],
+                        'user_id': address_body['user_id']
+                    }
+                    print("before post")
+                    print(profile_data)
+                    print(url)
+                    headers = {
+                        'Content-type': 'application/json',
+                        'Accept': 'text/plain',
+                        'Authorization':request.headers.get('Authorization')
+                        }
+                    addr_rsp = requests.post(url, data=json.dumps(profile_data), headers=headers)
+                    print("after post")
+                    rsp_data = lambda_response['body']
+                    rsp_status = 200
+                    # rsp_txt = "OK"
+                    rsp_txt = "Address created successfully"
+                else:
+                    rsp_data = None
+                    rsp_status = 404
+                    rsp_txt = "Address is invalid "
+            else:
+                rsp_data = None
+                rsp_status = 404
+                rsp_txt = "Error in state machine"
+
+        elif inputs["method"] == "PUT":
+            lambda_response = address_service.invoke_addressService(address_body['address_info'])
+
+            if lambda_response is not None:
+
+                if 'body' in lambda_response.keys():
+
+                    url = base_url + 'api/profile/'+address_body['user_id']
+
+                    profile_data = {
+                        'address_id': lambda_response['body'],
+                        'type': "Address",
+                        #'subtype': address_body['subtype'],
+                        'val': '/api/addresses/' + lambda_response['body'],
+                        'user_id': address_body['user_id']
+                    }
+                    if 'subtype' in address_body.keys():
+                        profile_data['subtype'] = address_body['subtype']
+                    print("profile data")
+                    print(profile_data)
+                    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+                    addr_rsp = requests.put(url, data = json.dumps(profile_data),headers=headers)
+
+                    rsp_data = lambda_response['body']
+                    rsp_status = 200
+                    # rsp_txt = "OK"
+                    rsp_txt = "Address updated successfully"
+                else:
+                    rsp_data = None
+                    rsp_status = 400
+                    rsp_txt = "Address is invalid "
+            else:
+                rsp_data = None
+                rsp_status = 404
+                rsp_txt = "Error in state machine "
+
+    except Exception as e:
+        log_msg = "address create: Exception = " + str(e)
+        logger.error(log_msg)
+        rsp_status = 500
+        rsp_txt = "Exception in address creation"
+
+    full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+    log_response("/create address", rsp_status, rsp_data, rsp_txt)
+
+    return full_rsp
+"""
 logger.debug("__name__ = " + str(__name__))
 # run the app.
 if __name__ == "__main__":
