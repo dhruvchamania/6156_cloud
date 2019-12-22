@@ -17,6 +17,7 @@ from functools import wraps
 #from Middleware import notification
 import Middleware.security as security_middleware
 import Middleware.notification as notification_middleware
+from hashlib import  sha3_256
 
 from botocore.vendored import requests
 
@@ -742,6 +743,7 @@ def create_address():
 
     return full_rsp
 """
+
 logger.debug("__name__ = " + str(__name__))
 # run the app.
 if __name__ == "__main__":

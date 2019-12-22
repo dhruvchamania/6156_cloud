@@ -4,7 +4,7 @@ angular.module("CustomerApp", []).controller("appearingController",
     console.log("Profile controller loaded.")
 
     var s3 = jQuery.LiveAddress({
-        key: "c54345c7-8c41-476f-9b14-8eea4021c26f",
+        key: "11861185026962264",
         waitForStreet: true,
         debug: true,
         target: "US",
