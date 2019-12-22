@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="67dd02e5-9ee4-4584-a9a6-065a38ff9057" name="Default Changelist" comment="" />
+    <list default="true" id="67dd02e5-9ee4-4584-a9a6-065a38ff9057" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/DataObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/DataObject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="745" selection-start-line="745" selection-end-line="745" />
+            <state relative-caret-position="372">
+              <caret line="504" column="22" selection-start-line="504" selection-start-column="22" selection-end-line="504" selection-end-column="22" />
               <folding>
                 <element signature="e#294#336#0" expanded="true" />
               </folding>
@@ -23,12 +28,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RegisterLogin/RegisterLogin.py">
+        <entry file="file://$PROJECT_DIR$/DataAccess/DataObject.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="-447">
+              <caret line="45" column="16" lean-forward="true" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
               <folding>
-                <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataAccess/DataAdaptor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-600">
+              <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -65,6 +82,9 @@
       <dir>C:\Dhruv\Columbia Courses\Fall 2019\E6156\prof_github\2019265wRa-Archive</dir>
     </dirStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -73,12 +93,12 @@
         <option value="$PROJECT_DIR$/CustomerInfo/Users.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/Services/CustomerProfile/ProfileDataObject.py" />
-        <option value="$PROJECT_DIR$/DataAccess/DataObject.py" />
         <option value="$PROJECT_DIR$/static_amelie_with_FB/js/validationController.js" />
         <option value="$PROJECT_DIR$/static_amelie_with_FB/js/addController.js" />
         <option value="$PROJECT_DIR$/static_amelie_with_FB/js/addressController.js" />
         <option value="$PROJECT_DIR$/static_amelie_with_FB/js/appearingController.js" />
         <option value="$PROJECT_DIR$/Middleware/notification.py" />
+        <option value="$PROJECT_DIR$/DataAccess/DataObject.py" />
         <option value="$PROJECT_DIR$/application.py" />
       </list>
     </option>
@@ -88,6 +108,7 @@
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -103,22 +124,7 @@
             <path>
               <item name="6156_cloud-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="6156_cloud-master" type="462c0819:PsiDirectoryNode" />
-              <item name="CustomerInfo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="6156_cloud-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="6156_cloud-master" type="462c0819:PsiDirectoryNode" />
-              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="6156_cloud-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="6156_cloud-master" type="462c0819:PsiDirectoryNode" />
-              <item name="RegisterLogin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="6156_cloud-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="6156_cloud-master" type="462c0819:PsiDirectoryNode" />
-              <item name="static_amelie_with_FB" type="462c0819:PsiDirectoryNode" />
+              <item name="DataAccess" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -128,6 +134,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -151,7 +158,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
+  <component name="RunManager" selected="Flask server.Flask (application.py)">
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/6156_cloud-master/UI/static/E6156/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -259,24 +266,24 @@
       <workItem from="1576868241713" duration="2332000" />
       <workItem from="1576871535791" duration="430000" />
       <workItem from="1576978092465" duration="5951000" />
-      <workItem from="1576988036918" duration="19034000" />
+      <workItem from="1576988036918" duration="23981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58335000" />
+    <option name="totallyTimeSpent" value="63282000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.4248401" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.4248401" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32719395" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869988" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32719395" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39869988" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -349,12 +356,17 @@
           <line>33</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/application.py</url>
+          <line>500</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/6156_cloud_master$tp.coverage" NAME="tp Coverage Results" MODIFIED="1576980673908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/6156_cloud_master$Flask__application_py_.coverage" NAME="Flask (application.py) Coverage Results" MODIFIED="1577040372513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/6156_cloud_master$Flask__application_py_.coverage" NAME="Flask (application.py) Coverage Results" MODIFIED="1577057749043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/2019265wRa_Archive$tp.coverage" NAME="tp Coverage Results" MODIFIED="1572038551519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/2019265wRa_Archive$Flask__application_py_.coverage" NAME="Flask (application.py) Coverage Results" MODIFIED="1572038321239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -396,41 +408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Software/Anaconda3/Lib/http/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="426" selection-start-line="426" selection-end-line="426" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Software/Anaconda3/Lib/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="864" selection-start-line="864" selection-end-line="864" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Software/Anaconda3/Lib/socketserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="653" selection-start-line="653" selection-end-line="653" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Software/Anaconda3/Lib/site-packages/werkzeug/serving.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-766">
-          <caret line="333" selection-start-line="333" selection-end-line="333" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Software/Anaconda3/Lib/site-packages/flask/cli.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="336" selection-start-line="336" selection-end-line="336" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Services/CustomerProfile/ProfileDataObject.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -451,59 +428,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Software/Anaconda3/Lib/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="1948" selection-start-line="1948" selection-end-line="1948" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataAccess/DataAdaptor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataAccess/DataObject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Middleware/middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CustomerInfo/Users.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RegisterLogin/RegisterLogin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -559,10 +489,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RegisterLogin/RegisterLogin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Middleware/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Software/Anaconda3/Lib/http/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="426" selection-start-line="426" selection-end-line="426" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Software/Anaconda3/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="864" selection-start-line="864" selection-end-line="864" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Software/Anaconda3/Lib/socketserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="653" selection-start-line="653" selection-end-line="653" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Software/Anaconda3/Lib/site-packages/werkzeug/serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="333" selection-start-line="333" selection-end-line="333" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Software/Anaconda3/Lib/site-packages/flask/cli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="336" selection-start-line="336" selection-end-line="336" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Software/Anaconda3/Lib/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="2462" selection-start-line="2462" selection-end-line="2462" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataAccess/DataAdaptor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-600">
+          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataAccess/DataObject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-447">
+          <caret line="45" column="16" lean-forward="true" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="745" selection-start-line="745" selection-end-line="745" />
+        <state relative-caret-position="372">
+          <caret line="504" column="22" selection-start-line="504" selection-start-column="22" selection-end-line="504" selection-end-column="22" />
           <folding>
             <element signature="e#294#336#0" expanded="true" />
           </folding>

@@ -17,7 +17,7 @@ from functools import wraps
 #from Middleware import notification
 import Middleware.security as security_middleware
 import Middleware.notification as notification_middleware
-from hashlib import  sha3_256
+from hashlib import sha3_256
 
 from botocore.vendored import requests
 
@@ -400,9 +400,17 @@ def user():
        if request.method == "POST":
 
             rsp = user_service.create_user(resource_name)
+            rsp_data1 = user_service.get_by_email(resource_name["email"])
+            c = ''
+            m = sha3_256()
+            for i in rsp_data1.values():
+                c = c + str(i)
+            m.update(b'c')
+            rsp_data1["ETag"] = str(m.digest())
+
 
             if rsp is not None:
-                rsp_data = rsp
+                rsp_data = rsp_data1
                 rsp_status = 200
                 rsp_txt = "User Created"
             else:
@@ -480,15 +488,33 @@ def user_email(email):
             # rsp_status = 501
             # rsp_txt = "NOT IMPLEMENTED"
             resource_name = request.get_json()
+
             account = user_service.get_by_email(email)
             if account["status"] == "DELETED":
                 rsp = "User is already deleted"
             else:
-                rsp = user_service.update_user(email, data=json.loads(request.get_data()))
+                c = ''
+                m = sha3_256()
+                for i in account.values():
+                    c = c + str(i)
+                m.update(b'c')
+                data = json.loads(request.get_data())
+                ll = request.headers['Etag']
+                ll =  ''.join(x for x in ll if x.isalpha())
+                lll = str(m.digest())
+                lll = ''.join(x for x in lll if x.isalpha())
+                if lll == ll:
+                    rsp = user_service.update_user(email,data)
+                else:
+                    rsp = "Corrupted"
             if rsp is not None:
                 rsp_data = rsp
                 rsp_status = 404
                 rsp_txt = "OK"
+            elif rsp == "Corrupted":
+                rsp_data = rsp
+                rsp_status = 404
+                rsp_txt = "Data Corrupted"
             else:
                 rsp_data = "Succesfully updated"
                 rsp_status = 200
