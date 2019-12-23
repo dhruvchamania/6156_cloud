@@ -66,7 +66,7 @@ class UsersRDB(BaseDataObject):
             res, data = data_adaptor.run_q(sql, args)
 
             msg = {"customers_email": user_info['email']}
-            #notification.publish_it(msg)
+            notification.publish_it(msg)
 
             if res != 1:
                 result = None
