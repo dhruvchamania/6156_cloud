@@ -12,14 +12,16 @@ import json
 import uuid
 from CustomerInfo.Users import UsersService as UserService
 from RegisterLogin.RegisterLogin import RegisterLoginSvc as RegisterLoginSvc
+from RegisterLogin.AddressService import AddressService as AddressService
 from Context.Context import Context
 from functools import wraps
 #from Middleware import notification
 import Middleware.security as security_middleware
 import Middleware.notification as notification_middleware
-from hashlib import sha3_256
+from hashlib import  sha3_256
 
-from botocore.vendored import requests
+#from botocore.vendored import requests
+import requests as req
 
 # Setup and use the simple, common Python logging framework. Send log messages to the console.
 # The application should get the log level out of the context. We will change later.
@@ -146,6 +148,14 @@ def _get_registration_service():
 
     return _registration_service
 
+def  _get_address_service():
+    global _get_address_service
+
+    if _get_address_service is None:
+        _get_address_service = AddressService()
+
+    return _get_address_service
+
 def init():
 
     global _default_context, _user_service, _profile_service
@@ -154,6 +164,7 @@ def init():
     _user_service = UserService(_default_context)
     _registration_service = RegisterLoginSvc()
     _profile_service = ProfileService(_default_context)
+    _get_address_service = AddressService()
 
     logger.debug("_user_service = " + str(_user_service))
     logger.debug("_profile_service = " + str(_profile_service))
@@ -400,17 +411,9 @@ def user():
        if request.method == "POST":
 
             rsp = user_service.create_user(resource_name)
-            rsp_data1 = user_service.get_by_email(resource_name["email"])
-            c = ''
-            m = sha3_256()
-            for i in rsp_data1.values():
-                c = c + str(i)
-            m.update(b'c')
-            rsp_data1["ETag"] = str(m.digest())
-
 
             if rsp is not None:
-                rsp_data = rsp_data1
+                rsp_data = rsp
                 rsp_status = 200
                 rsp_txt = "User Created"
             else:
@@ -488,33 +491,15 @@ def user_email(email):
             # rsp_status = 501
             # rsp_txt = "NOT IMPLEMENTED"
             resource_name = request.get_json()
-
             account = user_service.get_by_email(email)
             if account["status"] == "DELETED":
                 rsp = "User is already deleted"
             else:
-                c = ''
-                m = sha3_256()
-                for i in account.values():
-                    c = c + str(i)
-                m.update(b'c')
-                data = json.loads(request.get_data())
-                ll = request.headers['Etag']
-                ll =  ''.join(x for x in ll if x.isalpha())
-                lll = str(m.digest())
-                lll = ''.join(x for x in lll if x.isalpha())
-                if lll == ll:
-                    rsp = user_service.update_user(email,data)
-                else:
-                    rsp = "Corrupted"
+                rsp = user_service.update_user(email, data=json.loads(request.get_data()))
             if rsp is not None:
                 rsp_data = rsp
                 rsp_status = 404
                 rsp_txt = "OK"
-            elif rsp == "Corrupted":
-                rsp_data = rsp
-                rsp_status = 404
-                rsp_txt = "Data Corrupted"
             else:
                 rsp_data = "Succesfully updated"
                 rsp_status = 200
@@ -663,7 +648,7 @@ def test_middleware(parameter):
     # More stuff goes here.
 
     return "something"
-"""
+
 @application.route("/api/addresses", methods=["POST","PUT"])
 def create_address():
     address_body = request.get_json()
@@ -672,43 +657,40 @@ def create_address():
     # in_args, fields, body, limit, offset = parse_and_print_args()
     # address_info = body
     print("POST body =", address_body)
-    inputs = log_and_extract_input(demo, {"parameters": address_body['address_info']})
+    inputs = log_and_extract_input(demo, {"parameters": address_body['body']})
     full_rsp = None
     rsp_data = None
     rsp_status = None
     rsp_txt = None
     base_url = request.url_root
     try:
-        address_service = _get_address_service()
+        address_service = AddressService()
         logger.error("/address: _address_service = " + str(address_service))
         rsp = None
 
         if inputs["method"] == "POST":
-            lambda_response = address_service.invoke_addressService(address_body['address_info'])
+            url = "https://8qhflxznug.execute-api.us-east-1.amazonaws.com/alpha/api-address"
+            headers = {
+                'Content-type': 'application/json'
 
+            }
+            lambda_response = req.post(url, json=address_body, headers= headers) #address_service.address(address_body['body'])
+            lamb = lambda_response.json()
             if lambda_response is not None:
 
-                if 'body' in lambda_response.keys():
+                if 'body' in lamb.keys():
 
-                    url = base_url + 'api/profile'
+                    url = "https://8qhflxznug.execute-api.us-east-1.amazonaws.com/alpha/api-address"#base_url + 'api/profile'
                     profile_data = {
-                        'address_id': lambda_response['body'],
-                        'type': "Address",
-                        'subtype': address_body['subtype'],
-                        'val': '/api/addresses/' + lambda_response['body'],
-                        'user_id': address_body['user_id']
+                        'address_id': lamb['body'][1:-1],
+                        'userid': address_body['userid']
                     }
                     print("before post")
                     print(profile_data)
-                    print(url)
-                    headers = {
-                        'Content-type': 'application/json',
-                        'Accept': 'text/plain',
-                        'Authorization':request.headers.get('Authorization')
-                        }
-                    addr_rsp = requests.post(url, data=json.dumps(profile_data), headers=headers)
+                    profile_service = _get_profile_service()
+                    rsp = profile_service.update_by_profileid('dhruv_profile3', profile_data)
                     print("after post")
-                    rsp_data = lambda_response['body']
+                    rsp_data = lamb['body']
                     rsp_status = 200
                     # rsp_txt = "OK"
                     rsp_txt = "Address created successfully"
@@ -721,42 +703,6 @@ def create_address():
                 rsp_status = 404
                 rsp_txt = "Error in state machine"
 
-        elif inputs["method"] == "PUT":
-            lambda_response = address_service.invoke_addressService(address_body['address_info'])
-
-            if lambda_response is not None:
-
-                if 'body' in lambda_response.keys():
-
-                    url = base_url + 'api/profile/'+address_body['user_id']
-
-                    profile_data = {
-                        'address_id': lambda_response['body'],
-                        'type': "Address",
-                        #'subtype': address_body['subtype'],
-                        'val': '/api/addresses/' + lambda_response['body'],
-                        'user_id': address_body['user_id']
-                    }
-                    if 'subtype' in address_body.keys():
-                        profile_data['subtype'] = address_body['subtype']
-                    print("profile data")
-                    print(profile_data)
-                    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-                    addr_rsp = requests.put(url, data = json.dumps(profile_data),headers=headers)
-
-                    rsp_data = lambda_response['body']
-                    rsp_status = 200
-                    # rsp_txt = "OK"
-                    rsp_txt = "Address updated successfully"
-                else:
-                    rsp_data = None
-                    rsp_status = 400
-                    rsp_txt = "Address is invalid "
-            else:
-                rsp_data = None
-                rsp_status = 404
-                rsp_txt = "Error in state machine "
-
     except Exception as e:
         log_msg = "address create: Exception = " + str(e)
         logger.error(log_msg)
@@ -768,7 +714,7 @@ def create_address():
     log_response("/create address", rsp_status, rsp_data, rsp_txt)
 
     return full_rsp
-"""
+
 
 logger.debug("__name__ = " + str(__name__))
 # run the app.
