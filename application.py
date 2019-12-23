@@ -12,7 +12,7 @@ import json
 import uuid
 from CustomerInfo.Users import UsersService as UserService
 from RegisterLogin.RegisterLogin import RegisterLoginSvc as RegisterLoginSvc
-from RegisterLogin.AddressService import AddressService as AddressService
+#from RegisterLogin.AddressService import AddressService as AddressService
 from Context.Context import Context
 from functools import wraps
 #from Middleware import notification
@@ -148,13 +148,6 @@ def _get_registration_service():
 
     return _registration_service
 
-def  _get_address_service():
-    global _get_address_service
-
-    if _get_address_service is None:
-        _get_address_service = AddressService()
-
-    return _get_address_service
 
 def init():
 
@@ -164,7 +157,6 @@ def init():
     _user_service = UserService(_default_context)
     _registration_service = RegisterLoginSvc()
     _profile_service = ProfileService(_default_context)
-    _get_address_service = AddressService()
 
     logger.debug("_user_service = " + str(_user_service))
     logger.debug("_profile_service = " + str(_profile_service))
@@ -652,7 +644,6 @@ def test_middleware(parameter):
 @application.route("/api/addresses", methods=["POST","PUT"])
 def create_address():
     address_body = request.get_json()
-    global _address_service
 
     # in_args, fields, body, limit, offset = parse_and_print_args()
     # address_info = body
@@ -664,8 +655,8 @@ def create_address():
     rsp_txt = None
     base_url = request.url_root
     try:
-        address_service = AddressService()
-        logger.error("/address: _address_service = " + str(address_service))
+
+
         rsp = None
 
         if inputs["method"] == "POST":
