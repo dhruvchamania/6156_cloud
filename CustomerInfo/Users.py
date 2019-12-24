@@ -45,6 +45,8 @@ class UsersService(BaseService):
         result = UsersRDB.get_by_email(email)
         return result
 
+
+
     @classmethod
     def delete_user(cls, user_info):
         result = UsersRDB.delete_user(user_info = user_info)
@@ -76,6 +78,16 @@ class UsersService(BaseService):
         user_info['id'] = str(uuid.uuid4())
         result = UsersRDB.create_user(user_info=user_info)
 
+        return result
+
+    @classmethod
+    def get_by_userid(cls, userid):
+        result = UsersRDB.get_by_userid(userid)
+        return result
+
+    @classmethod
+    def get_by_query(cls, tmp, cols):
+        result = UsersRDB.get_by_query(temp=tmp,cols=cols)
         return result
 
 

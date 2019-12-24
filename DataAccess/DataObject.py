@@ -44,6 +44,44 @@ class UsersRDB(BaseDataObject):
         return result
 
     @classmethod
+    def get_by_query(cls, temp, cols):
+
+        query = data_adaptor.create_select('baseball.users', template=temp, fields=cols)
+        res, data = data_adaptor.run_q(sql=query[0], args=(query[1]), fetch=True)
+        if data is not None and len(data) > 0:
+            result =  data[0]
+        else:
+            result = None
+
+        return result
+
+    @classmethod
+    def get_by_userid(cls, userid):
+
+        sql = "select * from baseball.users where id=%s"
+        # sql = "update baseball.users set email= "
+        res, data = data_adaptor.run_q(sql=sql, args=(userid), fetch=True)
+        if data is not None and len(data) > 0:
+            result = data[0]
+        else:
+            result = None
+
+        return result
+
+    @classmethod
+    def get_by_userid(cls, userid):
+
+        sql = "select * from baseball.users where id=%s"
+        # sql = "update baseball.users set email= "
+        res, data = data_adaptor.run_q(sql=sql, args=(userid), fetch=True)
+        if data is not None and len(data) > 0:
+            result = data[0]
+        else:
+            result = None
+
+        return result
+
+    @classmethod
     def delete_by_email(cls, email):
 
         sql = "UPDATE baseball.users SET "

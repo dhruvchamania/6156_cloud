@@ -301,6 +301,105 @@ def handle_profiles():
 
     return full_rsp
 
+@application.route('/api/<resource>/<primary_key>', methods=["GET"])
+def handle_resource_prim(resource,primary_key):
+    global _user_service
+
+    inputs = log_and_extract_input(demo, {"parameters": primary_key})
+    rsp_data = None
+    rsp_status = None
+    rsp_txt = None
+
+    try:
+
+        user_service = _get_user_service()
+
+        logger.error("/userid: _user_service = " + str(user_service))
+
+        if inputs["method"] == "GET":
+
+            account = user_service.get_by_userid(primary_key)
+            if account["status"] == "DELETED":
+                rsp = "User is already deleted"
+            else:
+                rsp = account
+
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 200
+                rsp_txt = "OK"
+            else:
+                rsp_data = None
+                rsp_status = 404
+                rsp_txt = "NOT FOUND"
+
+        if rsp_data is not None:
+            full_rsp = Response(json.dumps(rsp_data), status=rsp_status, content_type="application/json")
+        else:
+            full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+    except Exception as e:
+        log_msg = "/userid: Exception = " + str(e)
+        logger.error(log_msg)
+        rsp_status = 500
+        rsp_txt = "INTERNAL SERVER ERROR. Please take COMSE6156 -- Cloud Native Applications."
+        full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+    log_response("/userid", rsp_status, rsp_data, rsp_txt)
+
+    return full_rsp
+
+@application.route('/api/<resource>', methods=["GET"])
+def handle_resource(resource):
+    global _user_service
+
+    field_list = request.args.get('fields', None)
+    field_list = field_list.split(',')
+    inputs = log_and_extract_input(demo, {"parameters": resource})
+    rsp_data = None
+    rsp_status = None
+    rsp_txt = None
+    tmp = None
+    for k, v in request.args.items():
+        if (not k == 'fields') and (not k == 'limit') and (not k == 'offset') and (not k == 'order_by'):
+            if tmp is None:
+                tmp = {}
+            tmp[k] = v
+
+    try:
+
+        user_service = _get_user_service()
+
+        logger.error("/Query: _user_service = " + str(user_service))
+
+        if inputs["method"] == "GET":
+
+            rsp = user_service.get_by_query(tmp,field_list)
+            if rsp is not None:
+                rsp_data = rsp
+                rsp_status = 200
+                rsp_txt = "OK"
+            else:
+                rsp_data = None
+                rsp_status = 404
+                rsp_txt = "NOT FOUND"
+
+        if rsp_data is not None:
+            full_rsp = Response(json.dumps(rsp_data), status=rsp_status, content_type="application/json")
+        else:
+            full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+    except Exception as e:
+        log_msg = "/Query: Exception = " + str(e)
+        logger.error(log_msg)
+        rsp_status = 500
+        rsp_txt = "INTERNAL SERVER ERROR. Please take COMSE6156 -- Cloud Native Applications."
+        full_rsp = Response(rsp_txt, status=rsp_status, content_type="text/plain")
+
+    log_response("/Query", rsp_status, rsp_data, rsp_txt)
+
+    return full_rsp
+
 
 @application.route("/api/profile/<profileid>", methods=["GET", "PUT", "DELETE"])
 def handle_profile_profileid(profileid):

@@ -21,10 +21,7 @@ class ProfileService(BaseService):
 
         self._ctx = ctx
 
-    @classmethod
-    def get_by_userid(cls, userid):
-        result = ProfileRDB.get_by_userid(userid)
-        return result
+
 
     @classmethod
     def get_by_profileid(cls, profileid):
